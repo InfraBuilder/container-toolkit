@@ -1,0 +1,6 @@
+#!/bin/bash
+# Ex: kubernetes-backup-all "k8s_mycluster_$(date +%Y%m%d-%H%M%S)""
+
+BKPNAME="${1:-k8s_$(date +%Y%m%d-%H%M%S)}"
+kubectl get-all -o yaml > $BKPNAME.yaml
+kubectl slice -f $BKPNAME.yaml -o . -t "$BKPNAME/{{.metadata.namespace | lower}}/{{.kind | lower}}_{{.metadata.name}}.yaml"
