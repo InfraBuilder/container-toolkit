@@ -1,16 +1,16 @@
-FROM ubuntu:22.04
+FROM alpine:3
 
 COPY container-root/ /
 
-RUN export DEBIAN_FRONTEND=noninteractive \
-    && apt-get update && apt-get dist-upgrade -y \
-    && apt-get install -y \
+RUN apk add --no-cache \
+        bash \
         curl \
         git \
         gzip \
-        zip \
         jq \
         openssh-client \
+        openssl \
+        zip \
     && curl -s https://raw.githubusercontent.com/scaleway/scaleway-cli/master/scripts/get.sh | sh \
     && LASTK8S=$(curl -s https://storage.googleapis.com/kubernetes-release/release/stable.txt) \
     && curl -sL https://storage.googleapis.com/kubernetes-release/release/${LASTK8S}/bin/linux/amd64/kubectl -o kubectl \
@@ -26,7 +26,6 @@ RUN export DEBIAN_FRONTEND=noninteractive \
     && cd && rm -rf $TMPD \
     && export PATH="${KREW_ROOT:-$HOME/.krew}/bin:$PATH" \
     && kubectl krew install neat get-all slice \
-    && mkdir -p /root/.ssh /root/.kube /cli \
-    && rm -rf /var/lib/apt/lists/*
+    && mkdir -p /root/.ssh /root/.kube /cli
 
 WORKDIR /cli

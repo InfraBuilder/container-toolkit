@@ -4,7 +4,7 @@
 CURRENT_VERSION=$(shell git describe --tags --abbrev=0)
 MAJOR=$(shell echo $(CURRENT_VERSION) | cut -d. -f1)
 MINOR=$(shell echo $(CURRENT_VERSION) | cut -d. -f2)
-PATCH=$(shell echo $(CURRENT_VERSION) | cut -d. -f3)
+PATCH=$(shell echo $(CURRENT_VERSION) | cut -d. -f3 | cut -d- -f1)
 NEW_DATE=$(shell date "+%y%m%d%H%M%S")
 
 help:
