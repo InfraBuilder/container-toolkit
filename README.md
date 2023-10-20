@@ -1,5 +1,18 @@
-# container-scw-cli
-Scaleway cli container with tools
+# Toolkit
+
+Toolkit container with various CLI tools for infrastructure and kubernetes
+
+## Tools 
+
+- Scaleway CLI `scw`
+- Kubernetes CLI `kubectl`
+- Kubernetes Helm `helm`
+- Kubernetes Krew `kubectl krew`
+- Kubernetes Backup Script `kubernetes-backup-all` (Only backup resources, not PVC/PV data)
+ 
+Some kubectl plugins are also installed by default, as they are used for `kubernetes-backup-all` :
+- neat
+- slice
 
 ## How to use this container
 
