@@ -22,27 +22,31 @@ help:
 bump-major:
 	$(eval NEW_MAJOR=$(shell echo $$(( $(MAJOR) + 1 )) ))
 	@echo "Bumping major version..."
-	git tag -a $(NEW_MAJOR).0.0-$(NEW_DATE) -m "Bump major version to $(NEW_MAJOR).0.0"
+	git tag -f -a $(NEW_MAJOR).0.0 -m "Bump major version to $(NEW_MAJOR).0.0 build $(NEW_DATE)"
+	git tag -a $(NEW_MAJOR).0.0-$(NEW_DATE) -m "Bump major version to $(NEW_MAJOR).0.0 build $(NEW_DATE)"
 	@echo To push this tag execute : 
-	@echo git push origin $(NEW_MAJOR).0.0
+	@echo git push origin $(NEW_MAJOR).0.0-$(NEW_DATE)
 
 bump-minor:
 	$(eval NEW_MINOR=$(shell echo $$(( $(MINOR) + 1 )) ))
 	@echo "Bumping minor version..."
-	git tag -a $(MAJOR).$(NEW_MINOR).0-$(NEW_DATE) -m "Bump minor version to $(MAJOR).$(NEW_MINOR).0"
+	git tag -f -a $(MAJOR).$(NEW_MINOR).0 -m "Bump minor version to $(MAJOR).$(NEW_MINOR).0 build $(NEW_DATE)"
+	git tag -a $(MAJOR).$(NEW_MINOR).0-$(NEW_DATE) -m "Bump minor version to $(MAJOR).$(NEW_MINOR).0 build $(NEW_DATE)"
 	@echo To push this tag execute : 
-	@echo git push origin $(MAJOR).$(NEW_MINOR).0
+	@echo git push origin $(MAJOR).$(NEW_MINOR).0-$(NEW_DATE)
 
 bump-patch:
 	$(eval NEW_PATCH=$(shell echo $$(( $(PATCH) + 1 )) ))
 	@echo "Bumping patch version..."
-	git tag -a $(MAJOR).$(MINOR).$(NEW_PATCH)-$(NEW_DATE) -m "Bump patch version to $(MAJOR).$(MINOR).$(NEW_PATCH)"
+	git tag -f -a $(MAJOR).$(MINOR).$(NEW_PATCH) -m "Bump patch version to $(MAJOR).$(MINOR).$(NEW_PATCH) build $(NEW_DATE)"
+	git tag -a $(MAJOR).$(MINOR).$(NEW_PATCH)-$(NEW_DATE) -m "Bump patch version to $(MAJOR).$(MINOR).$(NEW_PATCH) build $(NEW_DATE)"
 	@echo To push this tag execute : 
-	@echo git push origin $(MAJOR).$(MINOR).$(NEW_PATCH)
+	@echo git push origin $(MAJOR).$(MINOR).$(NEW_PATCH)-$(NEW_DATE)
 
 bump-date:
 	@echo "Bumping date version..."
-	git tag -a $(MAJOR).$(MINOR).$(PATCH)-$(NEW_DATE) -m "Bump patch version to $(MAJOR).$(MINOR).$(NEW_PATCH)"
+	git tag -a $(MAJOR).$(MINOR).$(PATCH) -m "Bump patch version to $(MAJOR).$(MINOR).$(NEW_PATCH) build $(NEW_DATE)"
+	git tag -a $(MAJOR).$(MINOR).$(PATCH)-$(NEW_DATE) -m "Bump patch version to $(MAJOR).$(MINOR).$(NEW_PATCH) build $(NEW_DATE)"
 
 git-push:
 	git push && git push --tags
