@@ -5,13 +5,17 @@ COPY container-root/ /
 RUN apk --nocache upgrade --available \
     && apk add --no-cache \
         bash \
+        bind-tools \
         curl \
         gawk \
         git \
         gzip \
         jq \
+        minio-client \
         openssh-client \
         openssl \
+        restic \
+        rsync \
         sed \
         zip \
     && curl -s https://raw.githubusercontent.com/scaleway/scaleway-cli/master/scripts/get.sh | sh \

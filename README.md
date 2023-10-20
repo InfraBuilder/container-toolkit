@@ -9,17 +9,21 @@ Toolkit container with various CLI tools for infrastructure and kubernetes
 - Kubernetes Helm `helm`
 - Kubernetes Krew `kubectl krew`
 - Kubernetes Backup Script `kubernetes-backup-all` (Only backup resources, not PVC/PV data)
+- MinIO CLI `mcli`
+- Restic CLI `restic`
+- Bind tools `dig`, `host`, etc.
+- Rsync `rsync`
  
 Some kubectl plugins are also installed by default, as they are used for `kubernetes-backup-all` :
-- neat
-- slice
+- `neat`
+- `slice`
 
 ## How to use this container
 
 For Scaleway CLI :
 ```
 docker run -it \
-    -v path-to-config.yaml:/root/.config/scw/config.yaml \
+    -v ~/.config/scw/config.yaml:/root/.config/scw/config.yaml \
     infrabuilder/scw-cli scw version
 ```
 
