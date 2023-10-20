@@ -2,14 +2,17 @@ FROM alpine:3
 
 COPY container-root/ /
 
-RUN apk add --no-cache \
+RUN apk --nocache upgrade --available \
+    && apk add --no-cache \
         bash \
         curl \
+        gawk \
         git \
         gzip \
         jq \
         openssh-client \
         openssl \
+        sed \
         zip \
     && curl -s https://raw.githubusercontent.com/scaleway/scaleway-cli/master/scripts/get.sh | sh \
     && LASTK8S=$(curl -s https://storage.googleapis.com/kubernetes-release/release/stable.txt) \
