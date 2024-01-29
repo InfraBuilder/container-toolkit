@@ -17,6 +17,7 @@ RUN apk --nocache upgrade --available \
         restic \
         rsync \
         sed \
+        yq \
         zip \
     && curl -s https://raw.githubusercontent.com/scaleway/scaleway-cli/master/scripts/get.sh | sh \
     && LASTK8S=$(curl -s https://storage.googleapis.com/kubernetes-release/release/stable.txt) \
