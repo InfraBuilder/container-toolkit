@@ -6,6 +6,7 @@ RUN apk --nocache upgrade --available \
     && apk add --no-cache \
         bash \
         bind-tools \
+        coreutils \
         curl \
         gawk \
         git \
